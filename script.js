@@ -5,16 +5,16 @@ $(document).ready(function() {
     function gotData(data) {
         datePlot = data.date;
         ratePlot = data.rate;
-        rateExpressPlot = data.rateExpress;
+        // rateExpressPlot = data.rateExpress;
 
         var datePlotArray = [];
         var ratePlotArray = [];
-        var rateExpressPlotArray = [];
+        // var rateExpressPlotArray = [];
 
         for (var i = 0; i < datePlot.length; i++) {
             datePlotArray.push(datePlot[i]);
             ratePlotArray.push(ratePlot[i]);
-            rateExpressPlotArray.push(rateExpressPlot[i]);
+            // rateExpressPlotArray.push(rateExpressPlot[i]);
         }
 
         new Chart(document.getElementById("line-chart"), {
@@ -23,13 +23,13 @@ $(document).ready(function() {
                 labels: datePlotArray,
                 datasets: [
                     {
-                        data: ratePlotArray,
+                        data: ratePlotArray[0],
                         label: "Rate",
                         borderColor: "#3e95cd",
                         fill: true,
                         lineTension: 0.25
                     }, {
-                        data: rateExpressPlotArray,
+                        data: ratePlotArray[1],
                         label: "Express Rate",
                         borderColor: "#8e5ea2",
                         fill: false
