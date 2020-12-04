@@ -2,42 +2,42 @@ import json
 import boto3
 from boto3.dynamodb.conditions import Key
 
-client = boto3.client('dynamodb')
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('remitly')
+DYNAMODB = boto3.resource('dynamodb')
+TABLE = DYNAMODB.Table('remitly')
 
 
 def main():
-
-    dateReturned = []
+    """Grab data and plot"""
+    date_returned = []
     rate = []
 
-    fe = Key('time').begins_with('2020-')
+    filter_expression = Key('time').begins_with('2020-')
 
-    response = table.scan(FilterExpression=fe)
+    response = TABLE.scan(FilterExpression=filter_expression)
     data = response['Items']
 
     for i in data:
-        dateReturned.append(i['time'].split(" ")[0])
+        date_returned.append(i['time'].split(" ")[0])
         rate.append(list(i['rate']))
 
-    bodyGot = {}
+    body_got = {}
 
     # Sort rate array by date
-    dateReturned, rate = zip(*sorted(zip(dateReturned, rate)))
+    date_returned, rate = zip(*sorted(zip(date_returned, rate)))
 
-    bodyGot['date'] = dateReturned
-    bodyGot['rate'] = rate
+    body_got['date'] = date_returned
+    body_got['rate'] = rate
 
-    bodyGot = json.dumps(bodyGot)
+    body_got = json.dumps(body_got)
     sendback = {
         "isBase64Encoded": False,
         "statusCode": 200,
         "headers": {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"},
-        "body": bodyGot
+        "body": body_got
     }
     return sendback
 
 
 def lambda_handler(event, context):
+    """Main Lambda function"""
     return main()
