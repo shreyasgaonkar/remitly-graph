@@ -1,9 +1,12 @@
 import json
+import datetime
 import boto3
 from boto3.dynamodb.conditions import Key
 
 DYNAMODB = boto3.resource('dynamodb')
 TABLE = DYNAMODB.Table('remitly')
+YEAR = datetime.datetime.utcnow()
+YEAR = YEAR.year
 
 
 def main():
@@ -11,7 +14,7 @@ def main():
     date_returned = []
     rate = []
 
-    filter_expression = Key('time').begins_with('2020-')
+    filter_expression = Key('time').begins_with(f'{YEAR}-')
 
     response = TABLE.scan(FilterExpression=filter_expression)
     data = response['Items']
