@@ -1,6 +1,6 @@
 # remitly-graph
 
-Extension of [Remitly web scrapper](https://github.com/shreyasgaonkar/website-scrapper-beautifulsoup) using GraphJS and built on AWS Amplify.
+Extension of [Remitly web scrapper](https://github.com/shreyasgaonkar/website-scrapper-beautifulsoup) using GraphJS and built on Glitch.com.
 
 ### Output:
 
