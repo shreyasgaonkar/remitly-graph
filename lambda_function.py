@@ -5,8 +5,7 @@ from boto3.dynamodb.conditions import Key
 
 DYNAMODB = boto3.resource('dynamodb')
 TABLE = DYNAMODB.Table('remitly')
-YEAR = datetime.datetime.utcnow()
-YEAR = YEAR.year
+YEAR = datetime.datetime.utcnow().year
 
 
 def main():
