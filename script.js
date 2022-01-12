@@ -20,22 +20,22 @@ $(document).ready(function() {
             type: "line",
             data: {
                 labels: datePlotArray,
-                datasets: [
-                    {
-                        data: ratePlotArray,
-                        label: "Rate",
-                        borderColor: "#3e95cd",
-                        fill: true,
-                        lineTension: 0.25
-                    }, {
-                        data: rateExpressPlotArray,
-                        label: "Express Rate",
-                        borderColor: "#8e5ea2",
-                        fill: false
-                    }
-                ]
+                datasets: [{
+                    data: ratePlotArray,
+                    label: "Rate",
+                    borderColor: "#3e95cd",
+                    fill: true,
+                    lineTension: 0.25
+                }, {
+                    data: rateExpressPlotArray,
+                    label: "Express Rate",
+                    borderColor: "#8e5ea2",
+                    fill: false
+                }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: true,
                 title: {
                     display: true,
                     text: "Remitly USD To INR"
